@@ -12,6 +12,7 @@ game.PlayerEntity = me.Entity.extend({
         }]);
        
         this.body.setVelocity(5, 20);
+        this.facing = "right";
         me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
     
         this.renderable.addAnimation("idle", [78]);
@@ -47,8 +48,7 @@ game.PlayerEntity = me.Entity.extend({
                 this.renderable.setAnimationFrame();
             }
         }
-        
-       else if (this.body.vel.x !== 0) {
+               else if (this.body.vel.x !== 0) {
             if (!this.renderable.isCurrentAnimation("walk")) {
                 this.renderable.setCurrentAnimation("walk");
             }
