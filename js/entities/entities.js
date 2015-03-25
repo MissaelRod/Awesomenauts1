@@ -1,7 +1,7 @@
 game.PlayerEntity = me.Entity.extend({
     init: function(x, y, settings){
         this._super(me.Entity, 'init', [x, y, {
-                imag: "player",
+                image: "player",
                 width: 64,
                 height: 64,
                 spritewidth: "64",
@@ -25,11 +25,21 @@ game.PlayerEntity = me.Entity.extend({
         if(me.input.isKeyPressed("right")){
             //sets the position of my x by adding the velocity defined above in
             //setVelocity{} and multiplying it by me.timer.ticker
-            this.body.vel.x += this.body.accel.x * me.timer.ticker;
+            this.body.vel.x += this.body.accel.x * me.timer.tick;
             this.flipX(true);
+        }else if(me.input.isKeyPressed("left")){
+            this.body.vel.x -=this.body.accel.x * me.timer.tick;
+            this.flipX(false);
         }else{
             this.body.vel.x = 0;
         }
+        
+        if(me.input.isKeyPressed("jump") && !this.jumping && !this.falling){
+            this.jumping = true;
+            this.body.vel.y -= this.body.accel.y * me.timer.tick;
+        }
+        
+        
             if(me.input.isKeyPressed("attack")){
                if(!this.renderable.isCurrentAnimation("attack")){
                 //sets the animation to attack
@@ -70,7 +80,7 @@ game.PlayerBaseEntity = me.Entity.extend({
              spritewidth: "100",
              spriteheight: "100",
              getShape: function(){
-                 return (new me.Rect(0, 0, 100, 100)).toPolygon();
+                 return (new me.Rect(0, 0, 100, 70)).toPolygon();
              }
        }]);
         this.broken = false;
@@ -111,7 +121,7 @@ game.EnemyBaseEntity = me.Entity.extend({
              spritewidth: "100",
              spriteheight: "100",
              getShape: function(){
-                 return (new me.Rect(0, 0, 100, 100)).toPolygon();
+                 return (new me.Rect(0, 0, 100, 70)).toPolygon();
              }
        }]);
         this.broken = false;
