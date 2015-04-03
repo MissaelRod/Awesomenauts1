@@ -3,6 +3,7 @@ game.resources = [
      * @example
      * {name: "example", type:"image", src: "data/img/example.png"},
      */
+    //allows me to use the images given to me for this project
     {name: "background-tiles", type: "image", src: "data/img/background-tiles.png"},
     {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
     {name: "player", type:"image", src: "data/img/orcSpear.png"},
@@ -21,6 +22,7 @@ game.resources = [
      * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
      * {name: "example01", type: "tmx", src: "data/map/example01.json"},
      */
+    //lets me load the level I created
     {name: "level01", type:"tmx", src: "data/map/level01.tmx"}
 	
         

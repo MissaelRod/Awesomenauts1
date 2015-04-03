@@ -6,6 +6,7 @@ var game = {
 	data : {
 		// score
 		score : 0,
+                //adds health for my player, enemy, playerBase, enemyBase, playerSpeed, enemySpeed, and game manager
                 enemyBaseHealth: 10,
                 playerBaseHealth: 10,
                 enemyCreepHealth: 10,
@@ -21,7 +22,14 @@ var game = {
                 playerMoveSpeed: 5,
                 creepMoveSpeed: 5,
                 gameManager: "",
-                player: ""
+                player: "",
+                //adds gold and exp into my game
+                exp: 0,
+                gold: 0,
+                exp1: 0,
+                exp2: 0,
+                exp3: 0,
+                exp4: 0,
 	},
 	
 	
@@ -55,6 +63,7 @@ var game = {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
+            //loads my player and the enemy creep into the game
             me.pool.register("player", game.PlayerEntity, true);
             me.pool.register("PlayerBase", game.PlayerBaseEntity);
             me.pool.register("EnemyBase", game.EnemyBaseEntity);

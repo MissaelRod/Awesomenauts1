@@ -12,7 +12,7 @@ game.PlayScreen = me.ScreenObject.extend({
             
             var gamemanager = me.pool.pull("GameManager", 0, 0, {});
             me.game.world.addChild(gamemanager, 0);
-            
+            //allows the player to use these keys while in play
             me.input.bindKey(me.input.KEY.RIGHT, "right");
             me.input.bindKey(me.input.KEY.LEFT, "left");
             me.input.bindKey(me.input.KEY.UP, "jump");
@@ -28,7 +28,7 @@ game.PlayScreen = me.ScreenObject.extend({
 	 *  action to perform when leaving this screen (state change)
 	 */
 	onDestroyEvent: function() {
-		// remove the HUD from the game world
+		// remove the playerfrom the game world
 		me.game.world.removeChild(this.HUD);
 	},
         
