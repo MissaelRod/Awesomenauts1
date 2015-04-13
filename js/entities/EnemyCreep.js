@@ -49,7 +49,8 @@ game.EnemyCreep = me.Entity.extend({
     },
     collideHandler: function(response) {
         if (response.b.type === 'PlayerBase') {
-
+          var xdif = this.pos.x - response.b.pos.x;
+            var ydif = this.pos.y - response.b.pos.y;
 
             this.attacking = true;
             //this.lastAttscking=this.now;
@@ -89,7 +90,7 @@ game.EnemyCreep = me.Entity.extend({
                 }
             }
 
-            if (renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000
+            if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastHit >= 1000
                     && (Math.abs(ydif) <= 40) &&
                     (((xdif > 0) && this.facing === "left") || ((xdif < 0) && this.facing === "right"))
                     ) {

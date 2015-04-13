@@ -127,6 +127,7 @@ game.PlayerEntity = me.Entity.extend({
     collideHandler: function(response) {
         //collide handler for enemy base
         if (response.b.type === 'EnemyBaseEntity') {
+            this.collideWithEnemyBase(response);
             var ydif = this.pos.y - response.b.pos.y;
             var xdif = this.pos.x - response.b.pos.x;
 
@@ -147,17 +148,25 @@ game.PlayerEntity = me.Entity.extend({
         }
 
         if (this.renderable.isCurrentAnimation("attack") && this.now - this.lastMit >= game.data.playerAttackTimer) {
-            console.log("tower Mit");
             this.lastMit = this.now;
-            if (response.b.health <= game.data.playerAttack) {
+            if (response.b.health <= game.data.playerAttack);
+            }
+          }else if(response.b.type==='EnemyCreep'){
+              var ydif = this.pos.y - response.b.pos.y;
+            var xdif = this.pos.x - response.b.pos.x;
+            
+            
                 //adds 1 gold when a creep is killed
                 game.data.gold += 1;
-                console.log("current gold: " + game.data.gold);
-            }
+            
 
             response.b.loseHealth(game.data.playerAttack);
         }
 
+    },
+    collideWithEnemyBase: function(response){
+        
     }
+    
 });
 
