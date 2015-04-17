@@ -10,9 +10,20 @@ game.PlayScreen = me.ScreenObject.extend({
 
         this.resetPlayer(0, 420);
 
-        var gamemanager = me.pool.pull("GameManager", 0, 0, {});
-        me.game.world.addChild(gamemanager, 0);
+        var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
+        me.game.world.addChild(gameTimerManager, 0);
+        
+        var heroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
+        me.game.world.addChild(heroDeathManager, 0);
+        
+        var experienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
+        me.game.world.addChild(experienceManager, 0);
+        
         //allows the player to use these keys while in play
+        me.input.bindKey(me.input.KEY.B, "buy");
+        me.input.bindKey(me.input.KEY.Q, "skill1");
+        me.input.bindKey(me.input.KEY.W, "skill2");
+        me.input.bindKey(me.input.KEY.E, "skill3");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.LEFT, "left");
         me.input.bindKey(me.input.KEY.UP, "jump");
