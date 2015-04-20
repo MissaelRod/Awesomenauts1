@@ -19,6 +19,9 @@ game.PlayScreen = me.ScreenObject.extend({
         var experienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
         me.game.world.addChild(experienceManager, 0);
         
+        var spendgold = me.pool.pull("SpendGold", 0, 0, {});
+        me.game.world.addChild(spendgold, 0);
+        
         //allows the player to use these keys while in play
         me.input.bindKey(me.input.KEY.B, "buy");
         me.input.bindKey(me.input.KEY.Q, "skill1");
