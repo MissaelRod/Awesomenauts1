@@ -117,7 +117,7 @@ game.SpendGold = Object.extend({
      },
      
      setBuyText: function(){
-       game.game.buytext = new (me.Renderable.extend({
+       game.data.buytext = new (me.Renderable.extend({
             init: function() {
                 this._super(me.Renderable, 'init', [game.data.pausePos.x, game.data.pausePos.y, 300, 50]);
                 this.font = new me.Font("Arial", 25, "white");
@@ -125,11 +125,17 @@ game.SpendGold = Object.extend({
                 this.alwaysUpdate = true;
             },
             draw: function(renderer) {
-                this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT!", this.pos.x, this.pos.y);
+                this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT. Current Gold: " + game.data.gold, this.pos.x, this.pos.y + 0);
+                this.font.draw(renderer.getContext(), "Skill 1:Increase Damge. Current Level: ", this.pos.x, this.pos.y + 40);
+                this.font.draw(renderer.getContext(), "Skill 2:Run Faster. Current Level: ", this.pos.x, this.pos.y + 80);
+                this.font.draw(renderer.getContext(), "Skill 3:Increase Health. Current Level: ", this.pos.x, this.pos.y + 120);
+                this.font.draw(renderer.getContext(), "Q Ability: Speed Burst. Current Level: ", this.pos.x, this.pos.y + 160);
+                this.font.draw(renderer.getContext(), "W Ability: Eat Your Creep For Health. Current Level: ", this.pos.x, this.pos.y + 200);
+                this.font.draw(renderer.getContext(), "E Ability: Through Your Spear: ", this.pos.x, this.pos.y + 240);
             }
             
             })); 
-        me.game.world.addChild(game.data.buytext, 35):
+        me.game.world.addChild(game.data.buytext, 35);
      },
      
      stopBuying: function(){
@@ -143,5 +149,6 @@ game.SpendGold = Object.extend({
          me.input.unbindKey(me.input.KEY.F4, "F4", true);
          me.input.unbindKey(me.input.KEY.F5, "F5", true);
          me.input.unbindKey(me.input.KEY.F6, "F6", true);
+         me.game.world.removeChild(game.data.buytext);
      }
 });
