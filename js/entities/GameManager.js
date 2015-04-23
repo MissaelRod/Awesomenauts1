@@ -47,7 +47,7 @@ game.HeroDeathManager = Object.extend({
 
 game.ExperienceManager = Object.extend({
   init: function(x, y, settings){
-      this.alwayUpdate = true;
+      this.alwaysUpdate = true;
       this.gameover = false;
   },
   

@@ -56,6 +56,7 @@ this.setSuper(x, y);
 
                 this.dead = this.checkIfDead();
                 this.checkKeyPressesAndMove();
+                this.setAnimation();
                 me.collision.check(this, true, this.collideHandler.bind(this), true);
                 this.body.update(delta);
                 this._super(me.Entity, "update", [delta]);
@@ -64,6 +65,7 @@ this.setSuper(x, y);
         
         checkIfDead: function() {
         if (this.health <= 0) {
+            console.log(workssofar);
         return true;
         }
         return false;
@@ -94,8 +96,8 @@ this.setSuper(x, y);
         },
         
         moveLeft: function() {
-        this.facing = "left";
-                this.body.vel.x -= this.body.accel.x * me.timer.tick;
+        this.body.vel.x -= this.body.accel.x * me.timer.tick;
+                this.facing = "left";
                 this.flipX(false);
         },
         
@@ -166,7 +168,7 @@ this.setSuper(x, y);
 
        if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
          this.lastHit = this.now;
-         response.b.health(game.data.playerAttack);
+         response.b.loseHealth(game.data.playerAttack);
         }
       
     },
