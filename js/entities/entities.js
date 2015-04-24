@@ -65,7 +65,7 @@ this.setSuper(x, y);
         
         checkIfDead: function() {
         if (this.health <= 0) {
-            console.log(workssofar);
+           
         return true;
         }
         return false;
