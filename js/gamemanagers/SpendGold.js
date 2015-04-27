@@ -1,5 +1,6 @@
 game.SpendGold = Object.extend({
     init: function(x, y, settings){
+        //this function always changes when you spend or earn gold
         this.now = new Date().getTime();
         this.lastBuy = new Date().getTime();
         this.paused = false;
@@ -79,6 +80,7 @@ game.SpendGold = Object.extend({
      },
      
      checkBuyKeys: function(){
+         //allows the player to buy stuff with the F1-F5 keys
          if(me.input.isKeyPressed("F1")){
              if(this.checkCost(1)){
                  this.makePurchase(1);
@@ -107,6 +109,7 @@ game.SpendGold = Object.extend({
      },
      
      checkCost: function(skill){
+         //keeps track of the players skiill level
          if(skill===1 && ( game.data.gold >= ((game.data.skill1+1)*10))){
              return true;
          }else if(skill===2 && ( game.data.gold >= ((game.data.skill2+1)*10))){

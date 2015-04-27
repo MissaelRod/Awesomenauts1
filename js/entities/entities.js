@@ -168,6 +168,7 @@ this.setSuper(x, y);
 
        if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer){
          this.lastHit = this.now;
+         //player can lose health when hit
          response.b.loseHealth(game.data.playerAttack);
         }
       

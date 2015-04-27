@@ -7,9 +7,9 @@ game.PlayScreen = me.ScreenObject.extend({
         game.data.score = 0;
 
         me.levelDirector.loadLevel("level01");
-
+        //the position were the player respawns
         this.resetPlayer(0, 420);
-
+        
         var gameTimerManager = me.pool.pull("GameTimerManager", 0, 0, {});
         me.game.world.addChild(gameTimerManager, 0);
         

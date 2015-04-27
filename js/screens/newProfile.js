@@ -3,7 +3,8 @@ game.NewProfile = me.ScreenObject.extend({
      *  action to perform on state change
      */
     onResetEvent: function() {
-        me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("new-Screen")), -10);
+        //adds the new profile page
+        me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage("new-profile")), -10);
         
         me.input.unbindKey(me.input.KEY.B);
         me.input.unbindKey(me.input.KEY.Q);
@@ -13,6 +14,7 @@ game.NewProfile = me.ScreenObject.extend({
 
         me.game.world.addChild(new (me.Renderable.extend({
             init: function() {
+                //positions the txt on the page
                 this._super(me.Renderable, 'init', [10, 10, 300, 50]);
                 this.font = new me.Font("Arial", 25, "white");
             },
