@@ -12,15 +12,20 @@ $array = array(
 
 $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-
-$query = $_SESSION["connection"]->query("SELECT salt, password FROM users WHERE username = '$username'");
+$query = $_SESSION["connection"]->query("SELECT * FROM users WHERE username = '$username'");
 
 if ($query->num_rows == 1) {
     $row = $query->fetch_array();
     //tells if the password you put in is correct
     if ($row["password"] === crypt($password, $row["salt"])) {
         $_SESSION["authenticated"] = true;
-        echo "<p>Login successful!</p>";
+        $array["exp"] = $row["exp"];
+         $array["exp1"] = $row["exp1"];
+          $array["exp2"] = $row["exp2"];
+           $array["exp3"] = $row["exp3"];
+            $array["exp4"] = $row["exp4"];
+        $SESSION["name"] = $username;
+        echo json_encode($array);
     } else {
         //if the wrong password is put in it will put out the given code below
         echo "<p> ACCESS FORBIDDEN !,Invalid username and password, please try agian or sing up<p>";
