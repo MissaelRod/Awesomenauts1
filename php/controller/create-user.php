@@ -19,7 +19,7 @@ $query = $_SESSION["connection"]->query("INSERT INTO users SET "
         . "exp3 = 0, "
         . "exp4 = 0");
 
-$SESSION["name"] = $username;
+$_SESSION["name"] = $username;
 
 if($query){  
     //need this for Ajax on index.php
@@ -29,5 +29,3 @@ if($query){
 else{
   echo "<p>" . $_SESSION["connection"]->error . "</p>"; 
 }
-?>
-<button><a class="list-group-item" href="../login.php">Login</a></button>

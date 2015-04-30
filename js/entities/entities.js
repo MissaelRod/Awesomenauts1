@@ -53,7 +53,6 @@ this.setSuper(x, y);
         update: function(delta) {
         this.now = new Date().getTime();
                 //updates my players health at all times
-
                 this.dead = this.checkIfDead();
                 this.checkKeyPressesAndMove();
                 this.setAnimation();
@@ -134,6 +133,7 @@ this.setSuper(x, y);
         //collide handler for enemy base
         if (response.b.type === 'EnemyBaseEntity') {
             this.collideWithEnemyBase(response);
+            console.log("hitTheBase");
         }else if (response.b.type === 'EnemyCreep'){
             this.collideWithEnemyCreep(response);
         }
@@ -170,6 +170,7 @@ this.setSuper(x, y);
          this.lastHit = this.now;
          //player can lose health when hit
          response.b.loseHealth(game.data.playerAttack);
+         console.log("attackingTheCreep");
         }
       
     },
@@ -203,6 +204,7 @@ this.setSuper(x, y);
                 game.data.gold += 1;
             }
                 response.b.loseHealth(game.data.playerAttack);
+                
         }
   });
 

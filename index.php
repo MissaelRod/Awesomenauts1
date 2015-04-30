@@ -1,4 +1,3 @@
-
 <?php
     require_once("php/controller/create-db.php");
 ?>
@@ -25,12 +24,12 @@
                 <form id="input" method="post">
                     <div class="field">
                         <lable for="username">Username</lable>
-                        <input type='tex' name='username' id='username' autocomplete='off'>
+                        <input type='text' name='username' id='username' autocomplete='off'>
                         
                     </div>
                     <div class='password'>
                         <lable for="password">Password</lable>
-                        <input type='tex' name='password' id='password'>
+                        <input type='password' name='password' id='password'>
                     </div>
                     
                     <button type='button' id='register'>Register</button>
@@ -102,7 +101,7 @@
                     $("#register").bind("click", function(){
                        $.ajax({
                            type: "POST",
-                           url: "php/controller/create-db.php",
+                           url: "php/controller/create-user.php",
                            data: {
                                username: $('#username').val(),
                                password: $('#password').val()
@@ -114,6 +113,33 @@
                                     me.state.change(me.state.PLAY);
                                 }else{
                                     alert(response);
+                                }  
+                       })
+                           .fail(function(response){
+                               alert("fail");
+                       });
+                   }); 
+                    $("#load").bind("click", function(){
+                       $.ajax({
+                           type: "POST",
+                           url: "php/controller/login-user.php",
+                           data: {
+                               username: $('#username').val(),
+                               password: $('#password').val()
+                           },
+                           dataType: "text"
+                       })
+                           .success(function(response){
+                                if(response==="ACCESS FORBIDDEN,Invalid username or password"){
+                                    alert(response);
+                                }else{
+                                    var data = jQuery.parseJSON(response);
+                                    game.data.exp = data["exp"];
+                                    game.data.exp1 = data["exp1"];
+                                    game.data.exp2 = data["exp2"];
+                                    game.data.exp3 = data["exp3"];
+                                    game.data.exp4 = data["exp4"];
+                                    me.state.change(me.state.SPENDEXP);
                                 }  
                        })
                            .fail(function(response){

@@ -1,5 +1,4 @@
 <?php
-
 require_once(__DIR__ . "/../model/config.php");
 
 $array = array(
@@ -20,18 +19,16 @@ if ($query->num_rows == 1) {
     if ($row["password"] === crypt($password, $row["salt"])) {
         $_SESSION["authenticated"] = true;
         $array["exp"] = $row["exp"];
-         $array["exp1"] = $row["exp1"];
-          $array["exp2"] = $row["exp2"];
-           $array["exp3"] = $row["exp3"];
-            $array["exp4"] = $row["exp4"];
-        $SESSION["name"] = $username;
+        $array["exp1"] = $row["exp1"];
+        $array["exp2"] = $row["exp2"];
+        $array["exp3"] = $row["exp3"];
+        $array["exp4"] = $row["exp4"];
+        $_SESSION["name"] = $username;
         echo json_encode($array);
     } else {
         //if the wrong password is put in it will put out the given code below
-        echo "<p> ACCESS FORBIDDEN !,Invalid username and password, please try agian or sing up<p>";
+        echo "ACCESS FORBIDDEN,Invalid username or password";
     }
-       } else {
-        echo "<p>ACCESS FORBIDDEN!,Invalid username and password<p>";
-    }
-?>
-<button><a class="list-group-item" href="../Index.php">Home</a></button>
+} else {
+    echo "ACCESS FORBIDDEN,Invalid username or password";
+}
